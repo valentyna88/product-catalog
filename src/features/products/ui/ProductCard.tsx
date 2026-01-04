@@ -1,3 +1,4 @@
+import { formatCurrency } from "../../../shared/lib/formatCurrency";
 import type { Product } from "../model/types";
 
 type Props = {
@@ -21,7 +22,9 @@ function ProductCard({ product }: Props) {
           {product.title}
         </h3>
 
-        <p className="mt-2 font-bold text-gray-900">${product.price}</p>
+        <p className="mt-2 font-bold text-gray-900">
+          {formatCurrency(product.price)}
+        </p>
       </div>
     </article>
   );
