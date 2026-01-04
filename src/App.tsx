@@ -1,4 +1,5 @@
 import Header from "./components/Header/Header";
+import ProductsList from "./features/products/ui/ProductsList";
 
 function App() {
   return (
@@ -6,7 +7,7 @@ function App() {
       <Header />
 
       <main className="mx-auto max-w-6xl px-4 py-8">
-        <p className="text-gray-600">Products list</p>
+        <ProductsList />
       </main>
     </div>
   );
