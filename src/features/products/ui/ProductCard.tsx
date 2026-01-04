@@ -6,11 +6,12 @@ type Props = {
 
 function ProductCard({ product }: Props) {
   return (
-    <article className="overflow-hidden rounded-xl border bg-white shadow-sm">
+    <article className="cursor-pointer overflow-hidden rounded-xl border bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
       <img
         src={product.imageUrl}
         alt={product.title}
         className="h-40 w-full object-cover"
+        loading="lazy"
       />
 
       <div className="p-4">
