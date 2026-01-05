@@ -1,11 +1,11 @@
 import { useParams, Link } from "react-router-dom";
-import { mockProducts } from "../features/products/model/mockProducts";
 import { formatCurrency } from "../shared/lib/formatCurrency";
+import { getProductById } from "../shared/lib/getProductById";
 
 function ProductDetailsPage() {
   const { id } = useParams();
 
-  const product = mockProducts.find((p) => p.id === Number(id));
+  const product = getProductById(id);
 
   if (!product) {
     return (
