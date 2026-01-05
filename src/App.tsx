@@ -1,15 +1,15 @@
-import Header from "./components/Header/Header";
-import ProductsList from "./features/products/ui/ProductsList";
+import { Navigate, Route, Routes } from "react-router-dom";
+import RootLayout from "./layouts/RootLayout";
+import ProductsPage from "./pages/ProductsPage";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Header />
-
-      <main className="mx-auto max-w-6xl px-4 py-8">
-        <ProductsList />
-      </main>
-    </div>
+    <Routes>
+      <Route element={<RootLayout />}>
+        <Route index element={<Navigate to="/products" replace />} />
+        <Route path="/products" element={<ProductsPage />} />
+      </Route>
+    </Routes>
   );
 }
 
