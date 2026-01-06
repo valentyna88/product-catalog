@@ -5,7 +5,9 @@ function RootLayout() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
-      <Outlet />
+      <main className="mx-auto max-w-6xl px-4 py-8">
+        <Outlet />
+      </main>
     </div>
   );
 }
