@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { formatCurrency } from "../../../shared/lib/formatCurrency";
 import type { Product } from "../model/types";
 
@@ -7,7 +8,12 @@ type Props = {
 
 function ProductCard({ product }: Props) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-xl border bg-white shadow-sm transition will-change-transform hover:-translate-y-0.5 hover:shadow-md">
+    <article className="relative flex h-full flex-col overflow-hidden rounded-xl border bg-white shadow-sm transition will-change-transform hover:-translate-y-0.5 hover:shadow-md">
+      <Link
+        to={`/products/${product.id}`}
+        aria-label={`View details: ${product.title}`}
+        className="absolute inset-0 z-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+      />
       <img
         src={product.imageUrl}
         alt={product.title}
