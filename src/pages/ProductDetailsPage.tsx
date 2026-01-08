@@ -23,11 +23,14 @@ function ProductDetailsPage() {
 
   return (
     <>
-      <Link to="/products" className="text-blue-600 hover:underline">
+      <Link
+        to="/products"
+        className="rounded text-blue-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+      >
         ← Back to products
       </Link>
 
-      <div className="mt-6 mx-auto max-w-3xl overflow-hidden rounded-xl border bg-white lg:max-w-5xl lg:grid lg:grid-cols-2">
+      <div className="mt-6 mx-auto max-w-3xl overflow-hidden rounded-xl border bg-white lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-6">
         <img
           src={product.imageUrl}
           alt={product.title}

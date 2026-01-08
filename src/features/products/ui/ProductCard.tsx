@@ -8,11 +8,11 @@ type Props = {
 
 function ProductCard({ product }: Props) {
   return (
-    <article className="relative flex h-full flex-col overflow-hidden rounded-xl border bg-white shadow-sm transition will-change-transform hover:-translate-y-0.5 hover:shadow-md">
+    <article className="relative flex h-full flex-col overflow-hidden rounded-xl border bg-white shadow-sm transition will-change-transform md:hover:-translate-y-0.5  md:hover:shadow-md focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2">
       <Link
         to={`/products/${product.id}`}
         aria-label={`View details: ${product.title}`}
-        className="absolute inset-0 z-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="absolute inset-0 z-10 focus:outline-none"
       />
       <img
         src={product.imageUrl}
