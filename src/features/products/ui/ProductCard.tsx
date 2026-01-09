@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../../../shared/lib/formatCurrency";
 import type { Product } from "../model/types";
+import { useCartStore } from "../../cart/model/cartStore";
 
 type Props = {
   product: Product;
 };
 
 function ProductCard({ product }: Props) {
+  const addItem = useCartStore((s) => s.addItem);
+
   return (
     <article className="relative flex h-full flex-col overflow-hidden rounded-xl border bg-white shadow-sm transition will-change-transform md:hover:-translate-y-0.5  md:hover:shadow-md focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2">
       <Link
@@ -37,7 +40,14 @@ function ProductCard({ product }: Props) {
             <button
               type="button"
               className="rounded-md border px-2 py-1 text-xs font-medium hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-              onClick={() => console.log("Add to cart", product.id)}
+              onClick={() => {
+                addItem({
+                  id: product.id,
+                  title: product.title,
+                  price: product.price,
+                  imageUrl: product.imageUrl,
+                });
+              }}
             >
               Add
             </button>
