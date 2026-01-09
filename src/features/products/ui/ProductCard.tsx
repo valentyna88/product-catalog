@@ -12,7 +12,7 @@ function ProductCard({ product }: Props) {
       <Link
         to={`/products/${product.id}`}
         aria-label={`View details: ${product.title}`}
-        className="absolute inset-0 z-10 focus:outline-none"
+        className="absolute inset-0 z-0 focus:outline-none"
       />
       <img
         src={product.imageUrl}
@@ -21,16 +21,28 @@ function ProductCard({ product }: Props) {
         loading="lazy"
       />
 
-      <div className="flex flex-1 flex-col p-4">
+      <div className="relative z-10 flex flex-1 flex-col p-4">
         <p className="text-xs font-medium text-gray-500">{product.category}</p>
 
         <h3 className="mt-1 min-h-11 line-clamp-2 text-base font-semibold text-gray-900">
           {product.title}
         </h3>
 
-        <p className="mt-auto pt-3 font-bold text-gray-900">
-          {formatCurrency(product.price)}
-        </p>
+        <div className="mt-auto flex items-end justify-between pt-3">
+          <p className="font-bold text-gray-900">
+            {formatCurrency(product.price)}
+          </p>
+
+          <div className="relative z-20 flex gap-2">
+            <button
+              type="button"
+              className="rounded-md border px-2 py-1 text-xs font-medium hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              onClick={() => console.log("Add to cart", product.id)}
+            >
+              Add
+            </button>
+          </div>
+        </div>
       </div>
     </article>
   );
