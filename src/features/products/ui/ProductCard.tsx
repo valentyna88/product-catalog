@@ -18,7 +18,7 @@ function ProductCard({ product }: Props) {
         className="absolute inset-0 z-0 focus:outline-none"
       />
       <img
-        src={product.imageUrl}
+        src={product.thumbnail}
         alt={product.title}
         className="aspect-video w-full object-cover"
         loading="lazy"
@@ -45,11 +45,11 @@ function ProductCard({ product }: Props) {
                   id: product.id,
                   title: product.title,
                   price: product.price,
-                  imageUrl: product.imageUrl,
+                  thumbnail: product.thumbnail,
                 });
               }}
             >
-              Add
+              Add to cart
             </button>
           </div>
         </div>

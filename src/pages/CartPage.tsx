@@ -51,7 +51,7 @@ function CartPage() {
             {items.map((item) => (
               <li key={item.id} className="flex gap-4 p-4">
                 <img
-                  src={item.imageUrl}
+                  src={item.thumbnail}
                   alt={item.title}
                   className="h-20 w-28 rounded-md object-cover"
                   loading="lazy"
@@ -60,10 +60,6 @@ function CartPage() {
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-medium text-gray-900">
                     {item.title}
-                  </p>
-
-                  <p className="mt-1 text-sm text-gray-600">
-                    {formatCurrency(item.price)}
                   </p>
 
                   <div className="mt-3 flex items-center gap-2">
