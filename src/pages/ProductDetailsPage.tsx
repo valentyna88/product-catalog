@@ -1,11 +1,26 @@
 import { useParams, Link } from "react-router-dom";
 import { formatCurrency } from "../shared/lib/formatCurrency";
-import { getProductById } from "../shared/lib/getProductById";
+import { useProductQuery } from "../features/products/queries/productsQueries";
 
 function ProductDetailsPage() {
   const { id } = useParams();
 
-  const product = getProductById(id);
+  const {
+    data: product,
+    isLoading,
+    isError,
+    error,
+  } = useProductQuery(id ?? "");
+
+  if (isLoading) return <div className="py-8">Loading...</div>;
+
+  if (isError) {
+    return (
+      <div className="py-8 text-red-600">
+        Failed to load product: {(error as Error).message}
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -32,7 +47,7 @@ function ProductDetailsPage() {
 
       <div className="mt-6 mx-auto max-w-3xl overflow-hidden rounded-xl border bg-white lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-6">
         <img
-          src={product.imageUrl}
+          src={product.thumbnail}
           alt={product.title}
           className="h-72 w-full object-cover lg:h-full"
           loading="lazy"

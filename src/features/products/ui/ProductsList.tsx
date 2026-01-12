@@ -1,21 +1,27 @@
-import { mockProducts } from "../model/mockProducts";
+import { useProductsQuery } from "../queries/productsQueries";
 import ProductCard from "./ProductCard";
 
 function ProductsList() {
-  return (
-    <section>
-      <h2 className="text-lg font-semibold text-gray-900 sm:text-xl">
-        Products
-      </h2>
+  const { data, isLoading, isError, error } = useProductsQuery();
 
-      <ul className="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 lg:gap-6">
-        {mockProducts.map((p) => (
-          <li key={p.id} className="h-full">
-            <ProductCard product={p} />
-          </li>
-        ))}
-      </ul>
-    </section>
+  if (isLoading) return <div className="py-8">Loading...</div>;
+
+  if (isError) {
+    return (
+      <div className="py-8 text-red-600">
+        Failed to load products: {(error as Error).message}
+      </div>
+    );
+  }
+
+  return (
+    <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {data!.map((p) => (
+        <li key={p.id}>
+          <ProductCard product={p} />
+        </li>
+      ))}
+    </ul>
   );
 }
 
