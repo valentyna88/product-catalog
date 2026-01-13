@@ -20,5 +20,8 @@ export function useProductQuery(id: string) {
     queryKey: productsKeys.detail(id),
     queryFn: () => fetchProductById(id),
     enabled: Boolean(id),
+
+    staleTime: 5 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
   });
 }
