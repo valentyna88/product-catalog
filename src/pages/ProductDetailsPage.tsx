@@ -1,6 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { formatCurrency } from "../shared/lib/formatCurrency";
 import { useProductQuery } from "../features/products/queries/productsQueries";
+import {
+  getImagePlaceholder,
+  getProductImage,
+} from "../shared/lib/productImage";
 
 function ProductDetailsPage() {
   const { id } = useParams();
@@ -47,10 +51,13 @@ function ProductDetailsPage() {
 
       <div className="mt-6 mx-auto max-w-3xl overflow-hidden rounded-xl border bg-white lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-6">
         <img
-          src={product.thumbnail}
+          src={getProductImage(product)}
           alt={product.title}
           className="h-72 w-full object-cover lg:h-full"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = getImagePlaceholder();
+          }}
         />
 
         <div className="flex flex-col p-6">

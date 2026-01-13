@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import { useCartStore } from "../features/cart/model/cartStore";
 import { formatCurrency } from "../shared/lib/formatCurrency";
 import { useShallow } from "zustand/shallow";
+import {
+  getImagePlaceholder,
+  getProductImage,
+} from "../shared/lib/productImage";
 
 function CartPage() {
   const { items, increase, decrease, removeItem, clear } = useCartStore(
@@ -51,10 +55,13 @@ function CartPage() {
             {items.map((item) => (
               <li key={item.id} className="flex gap-4 p-4">
                 <img
-                  src={item.thumbnail}
+                  src={getProductImage(item)}
                   alt={item.title}
                   className="h-20 w-28 rounded-md object-cover"
                   loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.src = getImagePlaceholder();
+                  }}
                 />
 
                 <div className="min-w-0 flex-1">

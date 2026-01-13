@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import { formatCurrency } from "../../../shared/lib/formatCurrency";
 import type { Product } from "../model/types";
 import { useCartStore } from "../../cart/model/cartStore";
+import {
+  getImagePlaceholder,
+  getProductImage,
+} from "../../../shared/lib/productImage";
 
 type Props = {
   product: Product;
@@ -18,10 +22,13 @@ function ProductCard({ product }: Props) {
         className="absolute inset-0 z-0 focus:outline-none"
       />
       <img
-        src={product.thumbnail}
+        src={getProductImage(product)}
         alt={product.title}
         className="aspect-video w-full object-cover"
         loading="lazy"
+        onError={(e) => {
+          e.currentTarget.src = getImagePlaceholder();
+        }}
       />
 
       <div className="relative z-10 flex flex-1 flex-col p-4">
